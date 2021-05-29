@@ -18,11 +18,19 @@ class Snake:
 
     def create_snake(self):
         for coordinate in STARTING_X_COORDINATES:
-            segment = Turtle("square")
-            segment.color("white")
-            segment.penup()
-            segment.setx(coordinate)
-            self.segments.append(segment)
+            self.add_segment(xcor=coordinate, ycor=0)
+
+    def add_segment(self, xcor, ycor):
+        segment = Turtle("square")
+        segment.color("white")
+        segment.penup()
+        segment.setx(xcor)
+        segment.sety(ycor)
+        self.segments.append(segment)
+
+    def extend(self):
+        """Add a new segment to the snake """
+        self.add_segment(self.segments[-1].xcor(), self.segments[-1].ycor())
 
     def move(self):
         snake_segments = self.segments
